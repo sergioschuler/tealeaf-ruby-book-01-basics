@@ -4,17 +4,15 @@ words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
           'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
           'flow', 'neon']
 
-possible_anagrams = []
 anagrams = {}
 
 words.each do |word|
-  possible_anagrams.push(word.split("").sort.join)
-end
-
-possible_anagrams.uniq.each { |anagram| anagrams.store(anagram,[]) }
-
-words.each do |word|
-  anagrams[word.split("").sort.join].push(word)
+  key = word.split('').sort.join
+  if anagrams.has_key?(key)
+    anagrams[key].push(word)
+  else  
+    anagrams[key] = [word]
+  end
 end
 
 anagrams.each do |k,v|
